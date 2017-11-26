@@ -5,8 +5,17 @@ public class ThreadedReverseGreeting {
   //Each thread should print "Hello from Thread <num>!", 
   //but you should structure your program such that the threads print their greetings in reverse order.
 	public static void main(String[] args) {
-		for (int i = 0; i < 50; i++) {
+		
 			
-		}
+				printgreating(50);
+				
+					
+			
+		
 	}
+
+private static void printgreating(int i) {
+	
+	
+}
 }
