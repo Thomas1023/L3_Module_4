@@ -19,32 +19,43 @@ public class BruteForceCracker {
 	
 	public static void main(String[] args) {
 		System.out.println("Starting Brute Force Checker");
-		startTime = System.currentTimeMillis();
+		
 		
 		int ctr = 0;
 		while(!checkCode(ctr++));
+		String fin = null;
+		Thread[] t = new Thread[0];
 		
-		for(int i = 0; i>160; i++) {
-			Thread b = new Thread(()->{
-				for(int f = 0; f>9; f++) {
-				int atmod = (int)(new Random().nextInt(10));
-				String fin = null;
-				String numString = "" + code;
-					char Letterchar = numString.charAt(f);
-					int Digit = Integer.parseInt("" + Letterchar);
-				if(atmod==Digit) {
-					fin=fin+atmod;
-					break;
-					
-				}
+		for(int i = 0; i<t.length; i++) {
+			int x = i;
+			int ped = 1000000000/t.length;
+			t[i] = new Thread(()->{
 				
-				
+				for(int g = x*ped; g<x*ped+ped; g++) {
+					//System.out.println(g);
+					if(checkCode(g)) {
+						endTime = System.currentTimeMillis();
+					}
 				}
 			});
-			b.start();
+			
+			
+		}
+		startTime = System.currentTimeMillis();
+		for(int i = 0; i<t.length; i++) {
+			
+			t[i].start();
+		}
+for(int i = 0; i<t.length; i++) {
+			
+			try {
+				t[i].join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
-		endTime = System.currentTimeMillis();
 		elapsedTime = (float)(endTime - startTime);
 		elapsedTime /= 1000.f;
 		System.out.println("Total time taken: " + elapsedTime + " seconds");
